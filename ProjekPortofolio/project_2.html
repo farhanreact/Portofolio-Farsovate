@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Projects</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <style>
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+      will-change: opacity, transform;
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Header -->
+  <header class="relative text-center py-10 px-6 md:px-20">
+    <h1 class="text-4xl md:text-5xl font-bold mb-2">🚀 Farsovate Desain Grafis</h1>
+    <p class="text-gray-400 mb-4">Farsovate Creative Projects</p>
+
+    <!-- Tombol Kembali ke Home di pojok kanan atas header -->
+    <a href="port.html#projects"
+       class="absolute top-6 right-6 flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full shadow-lg hover:shadow-indigo-500/50 transition-all duration-300 hover:scale-105">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+      <span class="font-semibold tracking-wide text-sm">Back To Home</span>
+    </a>
+  </header>
+
+  <!-- Projects Container -->
+  <main class="grid md:grid-cols-2 gap-8 px-6 md:px-20 pb-20">
+
+    <!-- Project 1 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-indigo-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/poster.farhan.jpg" loading="lazy" alt="Emotion Project" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">🔮 Desain Poster by Farhan</h2>
+      <p class="text-gray-300 mb-4">“Racism is not a choice—standing up against it is our responsibility. Unite in diversity, erase discrimination, and build a world filled with justice and respect for all.”</p>
+      <button onclick="showImage('aseet/poster.farhan.jpg')" class="bg-indigo-600 hover:bg-indigo-500 transition-all px-4 py-2 rounded-lg">View Image</button>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-green-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/poster Soleh X PPLG 2 (1).jpg" loading="lazy" alt="Personality Project" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">🧠 Desain Poster by Soleh</h2>
+      <p class="text-gray-300 mb-4">“Stop bullying—start with us! Be the kind of friend who uplifts, not one who harms. End violence and foster a safe, caring environment.”</p>
+      <button onclick="showImage('aseet/poster Soleh X PPLG 2 (1).jpg')" class="bg-green-600 hover:bg-green-500 transition-all px-4 py-2 rounded-lg">View Image</button>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-yellow-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/Han.jpg" loading="lazy" alt="Kemasan 3" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">🎨 Packaging Design by Farhan</h2>
+      <p class="text-gray-300 mb-4">“Bright and cheerful—this packaging is crafted to catch children’s attention and spark their imagination!”</p>
+      <button onclick="showImage('aseet/Han.jpg')" class="bg-yellow-600 hover:bg-yellow-500 transition-all px-4 py-2 rounded-lg">View Image</button>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-red-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/IMG-20241209-WA0014 (1).jpg" loading="lazy" alt="Kemasan 4" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">🔥 Packaging Design by Soleh</h2>
+      <p class="text-gray-300 mb-4">“Bold and blazing—this spicy-themed packaging radiates fiery energy with its striking red tones and flaming chili illustration, tempting your taste buds with every glance.”</p>
+      <button onclick="showImage('aseet/IMG-20241209-WA0014 (1).jpg')" class="bg-red-600 hover:bg-red-500 transition-all px-4 py-2 rounded-lg">View Image</button>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-pink-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/Farhan_A4.jpg" loading="lazy" alt="Kaos 5" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">❤️ T-shirt Design by Farhan</h2>
+      <p class="text-gray-300 mb-4">“This T-shirt design is a heartfelt tribute to how deeply we love and cherish our parents.”</p>
+      <button onclick="showImage('aseet/Farhan_A4.jpg')" class="bg-pink-600 hover:bg-pink-500 transition-all px-4 py-2 rounded-lg">View Image</button>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-blue-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/Soleh A4 (1).jpg" loading="lazy" alt="Kaos 6" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">🌍 T-shirt Design by Soleh</h2>
+      <p class="text-gray-300 mb-4">“This T-shirt celebrates our love for hobbies—the passions that make life more colorful and meaningful.”</p>
+      <button onclick="showImage('aseet/Soleh A4 (1).jpg')" class="bg-blue-600 hover:bg-blue-500 transition-all px-4 py-2 rounded-lg">View Image</button>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 pb-6">
+    &copy; 2025 Created by Farsovate ✨ | Powered by TailwindCSS
+  </footer>
+
+  <!-- Modal Gambar -->
+  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 scale-95 pointer-events-none transition-all duration-500">
+    <div class="relative max-w-3xl w-full">
+      <button onclick="closeImage()" class="absolute top-2 right-2 text-white text-2xl hover:text-red-400 z-50">&times;</button>
+      <img id="modalImage" src="" alt="Full View" class="rounded-xl shadow-2xl w-full max-h-[90vh] object-contain"/>
+    </div>
+  </div>
+
+  <!-- Scroll Animation and Modal JS -->
+  <script>
+    const imageModal = document.getElementById("imageModal");
+    const modalImage = document.getElementById("modalImage");
+
+    function showImage(src) {
+      modalImage.src = src;
+      imageModal.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+      imageModal.classList.add("opacity-100", "scale-100");
+    }
+
+    function closeImage() {
+      imageModal.classList.add("opacity-0", "scale-95", "pointer-events-none");
+      imageModal.classList.remove("opacity-100", "scale-100");
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

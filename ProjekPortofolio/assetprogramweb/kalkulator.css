@@ -1,0 +1,87 @@
+/* Struktur utama */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.wrapper {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    width: 320px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Tombol Home */
+.home-button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.home-button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.home-button:hover {
+    background-color: #2980b9;
+}
+
+/* Layar kalkulator */
+.screen {
+    background-color: #111;
+    color: #fff;
+    font-size: 2em;
+    padding: 15px;
+    text-align: right;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    min-height: 50px;
+}
+
+/* Tombol kalkulator */
+.calc-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.calc-button-row {
+    display: flex;
+    gap: 10px;
+}
+
+.calc-button {
+    flex: 1;
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calc-button:hover {
+    background-color: #666;
+}
+
+/* Tombol panjang */
+.double {
+    flex: 2;
+}
+
+.triple {
+    flex: 3;
+}

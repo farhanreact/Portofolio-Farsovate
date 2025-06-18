@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Projects</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <style>
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Header -->
+  <header class="relative text-center py-10 px-6 md:px-20">
+    <h1 class="text-4xl md:text-5xl font-bold mb-2">🚀 Farsovate Text Procedure & Narative</h1>
+    <p class="text-gray-400 mb-4">Farsovate Creative Projects</p>
+    <a href="port.html#projects" 
+       class="absolute top-6 right-6 flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-3xl shadow-lg hover:shadow-indigo-500/50 transition-all duration-300 hover:scale-105">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+      <span class="font-semibold tracking-wide text-sm">Home</span>
+    </a>
+  </header>
+
+  <!-- Projects Container -->
+  <main class="grid md:grid-cols-2 gap-8 px-6 md:px-20 pb-20">
+
+    <!-- Project 1 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-yellow-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <video class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500" autoplay loop muted playsinline>
+          <source src="vidseet/Word Beres.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h2 class="text-2xl font-bold mb-2">💾 Text Procedure</h2>
+      <p class="text-gray-300 mb-4">This video explains step by step how to use Microsoft Word for beginners. You will learn how to open the app, create a new document</p>
+      <button onclick="openModal(1)" class="bg-yellow-600 hover:bg-yellow-500 transition-all px-4 py-2 rounded-lg">Watch the video</button>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-yellow-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <video class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500" autoplay loop muted playsinline>
+          <source src="vidseet/KabayanAndTheLoveStone.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h2 class="text-2xl font-bold mb-2">💾 Text Narative</h2>
+      <p class="text-gray-300 mb-4">Kabayan loved Nyi Iteung, but her father didn’t agree. He told Kabayan to find a magic love stone. After a funny journey, Kabayan returned with nothing—but his honesty won the father’s heart. Kabayan and Nyi Iteung were finally together.</p>
+      <button onclick="openModal(2)" class="bg-yellow-600 hover:bg-yellow-500 transition-all px-4 py-2 rounded-lg">Watch the video</button>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 pb-6">
+    &copy; 2025 Created by Farsovate ✨ | Powered by TailwindCSS
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-0 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 scale-95 pointer-events-none transition-all duration-500">
+    <div class="bg-gray-800 p-8 rounded-xl shadow-lg max-w-lg w-full relative transform transition-all duration-500">
+      <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-xl hover:text-red-400">&times;</button>
+      <h3 id="modalTitle" class="text-2xl font-bold mb-4"></h3>
+      <div id="modalContent" class="text-gray-300"></div>
+    </div>
+  </div>
+
+  <!-- Scroll Animation & Modal Logic -->
+  <script>
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContent = document.getElementById("modalContent");
+
+    function openModal(id) {
+      modal.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+      modal.classList.add("opacity-100", "scale-100");
+
+      if (id === 1) {
+        modalTitle.innerText = "💾 Text Procedure";
+        modalContent.innerHTML = `
+          <video controls autoplay muted loop class="w-full rounded-lg">
+            <source src="vidseet/Word Beres.mp4" type="video/mp4">
+          </video>
+          <p class="mt-4">This video explains step by step how to use Microsoft Word for beginners. You will learn how to open the app, create a new document.</p>
+        `;
+      } else if (id === 2) {
+        modalTitle.innerText = "💾 Text Narative";
+        modalContent.innerHTML = `
+          <video controls autoplay muted loop class="w-full rounded-lg">
+            <source src="vidseet/KabayanAndTheLoveStone.mp4" type="video/mp4">
+          </video>
+          <p class="mt-4">Kabayan wanted to marry Nyi Iteung. Her father tested him. Kabayan proved his honesty, and they lived happily.</p>
+        `;
+      }
+    }
+
+    function closeModal() {
+      modal.classList.add("opacity-0", "scale-95", "pointer-events-none");
+      modal.classList.remove("opacity-100", "scale-100");
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

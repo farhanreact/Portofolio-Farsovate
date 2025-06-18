@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animasi Bola Jatuh</title>
+    <style>
+        canvas {
+            background-color: #f1f1f1;
+            display         : block;
+            margin          : 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <script>
+        // Ambil elemen canvas dan buat context
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Atur variabel bola
+        let x         = canvas.width / 2; // Posisi awal bola di tengah secara horizontal
+        let y         = 50;               // posisi awal bola (tinggi) sedikit di atas 
+        const jaribola = 10;              // Radius bola 
+        let dy         = 2;               // Kecepatan vertikal bola (arah jatuh)
+        const grafitasi = 0.1;            // Gaya gravitasi
+        const bounceFactor = 0.7;         // Faktor pantulan bola saat menyentuh bawah 
+
+        // Fungsi untuk menggambar bola 
+        function gambarBola() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Bersihkan canvas
+            ctx.beginPath();
+            ctx.arc(x, y, jaribola, 0, Math.PI * 2);          // Gambar lingkaran (bola)
+            ctx.fillstyle = "#00FF00";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        // Fungsi untuk memperbarui posisi bola 
+        function updatePosisiBola() {
+            // Cek apakah bola menyentuh bagian bawah canvas
+            if (y = jaribola > canvas.height) {
+                dy  = -dy * bounceFactor;        // Bola memantul dengan kecepatan yang dikurangi 
+                 y  = canvas.height - jaribola;  // Pastikan bola tidak keluar dari batas 
+            } else {
+                dy += grafitasi;                 // Tambahkan gravitasi untuk mempercepat jatuhnya bola 
+            }
+
+                y  += dy;                        // Perbarui posisi vertikal bola
+        }
+
+        // Fungsi utama untuk animasi
+        function animasi() {
+            gambarBola();                        // Gambar ulang bola 
+            updatePosisiBola();                  // Perbarui posisi bola 
+            requestAnimationFrame(animasi);      // Ulangi animasi pada frame berikutnya
+        }
+
+        // Mulai animasi
+        animasi();
+    </script>
+</body>
+</html>

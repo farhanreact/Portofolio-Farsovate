@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Projects</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <style>
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Header -->
+  <header class="relative text-center py-10 px-6 md:px-20">
+    <h1 class="text-4xl md:text-5xl font-bold mb-2">🚀 Farsovate Pemrograman Dasar</h1>
+    <p class="text-gray-400 mb-4">Farsovate Creative Projects</p>
+    
+    <!-- Tombol Kembali ke Home di pojok kanan atas header -->
+    <a href="port.html#projects" 
+       class="absolute top-6 right-6 flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full shadow-lg hover:shadow-indigo-500/50 transition-all duration-300 hover:scale-105">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+      <span class="font-semibold tracking-wide text-sm">Back to Home</span>
+    </a>
+  </header>
+
+  <!-- Projects Container -->
+  <main class="grid md:grid-cols-2 gap-8 px-6 md:px-20 pb-20">
+
+    <!-- Project 1 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-indigo-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/Screenshot 2025-05-24 205945 - Copy.png" alt="Emotion Project" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">Code (Input)</h2>
+      <p class="text-gray-300 mb-4">“C Programming by Soleh Wahyudin, Semester 1.”
+      </p>
+      <button onclick="showImage('aseet/Screenshot 2025-05-24 205945 - Copy.png')" class="bg-indigo-600 hover:bg-indigo-500 transition-all px-4 py-2 rounded-lg">Look Picture</button>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-green-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/Screenshot 2025-05-24 211223.png" alt="Personality Project" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">Output (Application)</h2>
+      <p class="text-gray-300 mb-4">An executable file you can directly run on your computer.</p>
+      <a href="aseet/KENAKALAN_REMAJA.exe" download
+         class="bg-yellow-600 hover:bg-yellow-500 transition-all px-4 py-2 rounded-lg text-white inline-block">
+        Try it on your device!
+      </a>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-indigo-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/farhanc++.png" alt="Emotion Project" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">Code (Input)</h2>
+      <p class="text-gray-300 mb-4">“C++ Programming by Muhammad Farhan, Semester 2.”
+      </p>
+      <button onclick="showImage('aseet/farhanc++.png')" class="bg-indigo-600 hover:bg-indigo-500 transition-all px-4 py-2 rounded-lg">Look Picture</button>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl fade-up hover:ring-2 hover:ring-green-500 transition-all duration-300 group">
+      <div class="overflow-hidden rounded-xl mb-4">
+        <img src="aseet/hasil.png" alt="Personality Project" class="w-full h-48 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <h2 class="text-2xl font-bold mb-2">Output (Application)</h2>
+      <p class="text-gray-300 mb-4">An executable file you can directly run on your computer.</p>
+      <a href="aseet/farhanproject.exe" download
+         class="bg-yellow-600 hover:bg-yellow-500 transition-all px-4 py-2 rounded-lg text-white inline-block">
+        Try it on your device!
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 pb-6">
+    &copy; 2025 Created by Farsovate ✨ | Powered by TailwindCSS
+  </footer>
+
+  <!-- Modal Gambar -->
+  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 scale-95 pointer-events-none transition-all duration-500">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeImage()" class="absolute top-2 right-2 text-black text-2xl hover:text-red-400 z-50">&times;</button>
+    <img id="modalImage" src="" alt="Full View" class="rounded-xl shadow-2xl w-full max-h-[90vh] object-contain"/>
+  </div>
+  </div>
+
+
+  <!-- Scroll Animation and Modal JS -->
+  <script>
+  const imageModal = document.getElementById("imageModal");
+  const modalImage = document.getElementById("modalImage");
+
+  function showImage(src) {
+    modalImage.src = src;
+    imageModal.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+    imageModal.classList.add("opacity-100", "scale-100");
+  }
+
+  function closeImage() {
+    imageModal.classList.add("opacity-0", "scale-95", "pointer-events-none");
+    imageModal.classList.remove("opacity-100", "scale-100");
+  }
+
+  // Scroll animation tetap
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+
+</body>
+</html>

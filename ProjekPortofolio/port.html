@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Dark Elegant Portfolio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="port.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM6g0g5z5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5" crossorigin="anonymous" />
+  <script>
+  function submitForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch('submit.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(text => {
+      const msg = document.getElementById("form-msg");
+      if (text.trim() === "success") {
+        msg.textContent = "Message sent successfully!";
+        msg.classList.remove("hidden", "text-red-400");
+        msg.classList.add("text-teal-400");
+        form.reset();
+      } else {
+        msg.textContent = "Failed to send message.";
+        msg.classList.remove("hidden", "text-teal-400");
+        msg.classList.add("text-red-400");
+      }
+    })
+    .catch(err => {
+      console.error("Error:", err);
+    });
+  }
+</script>
+  <script>
+    // Enable dark mode class strategy and custom colors
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            rose: {
+              500: '#fb7185',
+              600: '#f43f5e',
+            },
+            teal: {
+              400: '#4fd1c5',
+            },
+            dark: {
+              DEFAULT: '#1a1a1a', // Soft dark background
+            },
+            orange: {
+                def: '#E44D26'
+            },
+            emerald: {
+                emerald: '#00B388'
+            }
+          },
+          fontFamily: {
+            sans: ['Poppins', 'ui-sans-serif', 'system-ui'],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-dark text-white font-sans selection:bg-rose-600 selection:text-white">
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full z-30 bg-black/70 backdrop-blur-md border-b border-gray-700 shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12 flex justify-between items-center h-16">
+      <a href="#home" class="text-2xl font-bold tracking-wide">OurPortfolio</a>
+      <button id="menu-btn" class="sm:hidden focus:outline-none" aria-label="Toggle menu">
+        <svg class="w-8 h-8 text-rose-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16"></path>
+        </svg>
+      </button>
+      <ul id="menu" class="hidden sm:flex space-x-10 text-white font-medium tracking-wide text-lg">
+        <li><a href="#home" class="hover:text-rose-500 transition">Home</a></li>
+        <li><a href="#about" class="hover:text-rose-500 transition">About</a></li>
+        <li><a href="#skills" class="hover:text-rose-500 transition">Skills</a></li>
+        <li><a href="#projects" class="hover:text-rose-500 transition">Projects</a></li>
+        <li><a href="#contact" class="hover:text-rose-500 transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="sm:hidden fixed top-16 left-0 w-full bg-black/95 backdrop-blur-md border-t border-gray-700 max-h-0 overflow-hidden transition-all duration-300 ease-in-out z-20">
+    <ul class="flex flex-col space-y-6 p-6 text-white font-semibold text-xl">
+      <li><a href="#home" class="block hover:text-rose-500 transition" onclick="toggleMobileMenu()">Home</a></li>
+      <li><a href="#about" class="block hover:text-rose-500 transition" onclick="toggleMobileMenu()">About</a></li>
+      <li><a href="#skills" class="block hover:text-rose-500 transition" onclick="toggleMobileMenu()">Skills</a></li>
+      <li><a href="#projects" class="block hover:text-rose-500 transition" onclick="toggleMobileMenu()">Projects</a></li>
+      <li><a href="#contact" class="block hover:text-rose-500 transition" onclick="toggleMobileMenu()">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900  via-gray-800 to-black text-white">
+    <h1 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400">Hello, We Are Farsovate</h1>
+    <p class="text-lg sm:text-xl max-w-xl text-white/80 mb-10">A passionate developer crafting beautiful and performant web experiences.</p>
+    <a href="#projects" class="px-6 py-3 font-bold text-white rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-pulse transition-all duration-300 ease-in-out hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 active:scale-95 active:brightness-110 shadow-lg">Explore our portfolio</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 sm:px-12 max-w-4xl mx-auto ">
+    <h2 class="text-3xl font-bold text-white inline-block border-b-2 border-cyan-400 pb-1">About Us</h2>
+    <span class="absolute left-0 -bottom-1 w-full h-0.5 bg-slate-500"></span>
+    <p class="text-white/90 text-lg leading-relaxed pt-3">We are web developers with a passion for creating clean, elegant, and responsive designs using modern technologies. With a keen eye for detail and a focus on user experience, we build websites that not only look amazing but also perform efficiently.</p>
+  </section>
+  
+  <div class="flex flex-col sm:flex-row justify-center items-center gap-8 py-10">
+  
+  <!-- Card 1 -->
+  <div class="flip-card w-72 h-96">
+    <div class="flip-card-inner">
+      <!-- Front -->
+      <div class="flip-card-front bg-white rounded-2xl shadow-lg flex flex-col items-center justify-center p-6">
+        <img src="aseet/soleh_final.jpg" class="w-24 h-24 rounded-full shadow mb-4">
+        <h2 class="text-xl font-bold text-gray-800">Soleh Wahyudin</h2>
+        <p class="text-sm text-gray-600 mt-2 text-center">A Student of SMKN 1 Sumedang</p>
+      </div>
+      <!-- Back -->
+      <div class="flip-card-back bg-gray-900 text-white rounded-2xl shadow-lg flex flex-col items-center justify-center p-6">
+        <img src="https://cdn-icons-png.flaticon.com/512/875/875610.png" class="w-16 mb-4">
+        <h3 class="text-lg font-semibold">Hello World</h3>
+        <p class="text-sm text-center text-gray-300 mt-2">I Was Born In 14 July 2008, and my hoby is Playying Futsal.</p>
+        <a href="https://www.instagram.com/slhwhydn1407?igsh=MXc4bXVuaWt6d3QzMw==" class="mt-4 bg-white px-4 py-2 rounded-full text-sm font-semibold text-black transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-sky-400">Find Me</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="flip-card w-72 h-96">
+    <div class="flip-card-inner">
+      <div class="flip-card-front bg-white rounded-2xl shadow-lg flex flex-col items-center justify-center p-6">
+        <img src="aseet/f_final.jpg" class="w-24 h-24 rounded-full shadow mb-4">
+        <h2 class="text-xl font-bold text-gray-800">Muhammad Farhan</h2>
+        <p class="text-sm text-gray-600 mt-2 text-center">A Student of SMKN 1 Sumedang</p>
+      </div>
+      <div class="flip-card-back bg-gray-900 text-white rounded-2xl shadow-lg flex flex-col items-center justify-center p-6">
+        <img src="https://cdn-icons-png.flaticon.com/512/875/875610.png" class="w-16 mb-4">
+        <h3 class="text-lg font-semibold">Hello World</h3>
+        <p class="text-sm text-center text-gray-300 mt-2">I Was Born In 23 October 2008, and my hoby is Paskibra.</p>
+        <a href="https://www.instagram.com/frhnnsrlh_?igsh=MWZ2OWxmZ2E4ajd3NQ==" class="mt-4 bg-white px-4 py-2 rounded-full text-sm font-semibold text-black transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-sky-400">Find Me</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 bg-black px-6 sm:px-12">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl font-bold text-white mb-10 border-b border-cyan-400 inline-block pb-2">Skills</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-white">
+        <div class="flex flex-col items-center space-y-2 p-4 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 pt-4 bg-blue-500 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-orange-500">
+          <i class="fab fa-html5 text-rose-500 items-center"></i>
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-10">
+             <path fill-rule="evenodd" d="M4.25 2A2.25 2.25 0 0 0 2 4.25v11.5A2.25 2.25 0 0 0 4.25 18h11.5A2.25 2.25 0 0 0 18 15.75V4.25A2.25 2.25 0 0 0 15.75 2H4.25Zm4.03 6.28a.75.75 0 0 0-1.06-1.06L4.97 9.47a.75.75 0 0 0 0 1.06l2.25 2.25a.75.75 0 0 0 1.06-1.06L6.56 10l1.72-1.72Zm4.5-1.06a.75.75 0 1 0-1.06 1.06L13.44 10l-1.72 1.72a.75.75 0 1 0 1.06 1.06l2.25-2.25a.75.75 0 0 0 0-1.06l-2.25-2.25Z" clip-rule="evenodd" />
+        </svg>
+          <span>HTML5</span>
+        </div>
+        <div class="flex flex-col items-center space-y-2 p-4 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 bg-blue-500 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-sky-500">
+          <i class="fab fa-css3-alt text-rose-500 items-center"></i>
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tailwind size-10"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.667 6c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 2 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968zm-4 6.5c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 1.975 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968z" /></svg>
+          <span>CSS3 / Tailwind</span>
+        </div>
+        <div class="flex flex-col items-center space-y-2 p-4 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 bg-blue-500 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-yellow-500">
+          <i class="fab fa-js text-rose-500 items-center"></i>
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-js size-10"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M3 15h3v4.5a1.5 1.5 0 0 1 -3 0" /><path d="M9 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75" /><path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-1" /></svg>
+
+          <span>JavaScript</span>
+        </div>
+        <div class="flex flex-col items-center space-y-2 p-4 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 bg-blue-500 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-green-600 ...">
+          <i class="fab fa-react text-rose-500 items-center"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-10">
+        <path fill-rule="evenodd" d="M10 2c-2.236 0-4.43.18-6.57.524C1.993 2.755 1 4.014 1 5.426v5.148c0 1.413.993 2.67 2.43 2.902.848.137 1.705.248 2.57.331v3.443a.75.75 0 0 0 1.28.53l3.58-3.579a.78.78 0 0 1 .527-.224 41.202 41.202 0 0 0 5.183-.5c1.437-.232 2.43-1.49 2.43-2.903V5.426c0-1.413-.993-2.67-2.43-2.902A41.289 41.289 0 0 0 10 2Zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM8 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm5 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd"/>
+        </svg>
+
+          <span>Public Speaking</span>
+        </div>
+        <div class="flex flex-col items-center space-y-2 p-4 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 bg-blue-500 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-pink-500 ...">
+          <i class="fab fa-node-js text-rose-500 items-center"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-10">
+        <path d="m9.653 16.915-.005-.003-.019-.01a20.759 20.759 0 0 1-1.162-.682 22.045 22.045 0 0 1-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 0 1 8-2.828A4.5 4.5 0 0 1 18 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 0 1-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 0 1-.69.001l-.002-.001Z" />
+        </svg>
+
+          <span>Relationship</span>
+        </div>
+        <div class="flex flex-col items-center space-y-2 p-4 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 bg-blue-500 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-600 ...">
+          <i class="fab fa-git-alt text-rose-500 items-center"></i>
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-php size-10"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-10 0a10 9 0 1 0 20 0a10 9 0 1 0 -20 0" /><path d="M5.5 15l.395 -1.974l.605 -3.026h1.32a1 1 0 0 1 .986 1.164l-.167 1a1 1 0 0 1 -.986 .836h-1.653" /><path d="M15.5 15l.395 -1.974l.605 -3.026h1.32a1 1 0 0 1 .986 1.164l-.167 1a1 1 0 0 1 -.986 .836h-1.653" /><path d="M12 7.5l-1 5.5" /><path d="M11.6 10h2.4l-.5 3" /></svg>
+
+          <span>PHP</span>
+        </div>
+        <div class="flex flex-col items-center space-y-2 p-4 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 bg-blue-500 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-sky-400 ...">
+          <i class="fas fa-database text-rose-500 items-center"></i>
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-cpp size-10"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 12h4" /><path d="M20 10v4" /><path d="M11 12h4" /><path d="M13 10v4" /><path d="M9 9a3 3 0 0 0 -3 -3h-.5a3.5 3.5 0 0 0 -3.5 3.5v5a3.5 3.5 0 0 0 3.5 3.5h.5a3 3 0 0 0 3 -3" /></svg>
+          <span>C++</span>
+        </div>   
+        <div class="flex flex-col items-center space-y-2 p-4 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 bg-blue-500 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-green-800">
+          <i class="fas fa-cloud text-rose-500 items-center"></i>
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-drop-circle size-10"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-4.177 4.092a1 1 0 0 0 -1.646 0l-2.602 3.764c-1.022 1.67 -.634 3.736 .875 4.929a4.144 4.144 0 0 0 5.095 0c1.51 -1.191 1.897 -3.26 .904 -4.882z" /></svg>
+        </svg>
+
+          <span>Corel Draw</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 px-15 sm:px-12 max-w-8xl mx-auto bg-gradient-to-br from-[#0a0a0f] via-[#1a1b2f] to-[#0e0e1a]">
+    <h2 class="text-4xl font-bold text-white mb-10 border-b border-cyan-600 inline-block pb-2">Projects</h2>
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="bg-black rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105 cursor-pointer border border-gray-700">
+        <img src="aseet/pexels-tibe-de-kort-115101682-9951077.jpg" alt="Project 1" class="w-full h-48 object-cover" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2 text-white">Pemrograman Dasar</h3>
+          <p class="text-white/80 text-sm">A result of our work from basic programming with C and C++ languages with Mr. Rizal.</p>
+          <a href="project_1.html" class="text-teal-400 hover:text-teal-300 mt-4 inline-block font-semibold">View Details →</a>
+        </div>
+      </div>
+      <div class="bg-black rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105 cursor-pointer border border-gray-700">
+        <img src="aseet/pexels-jeswin-1656059.jpg" alt="Project 2" class="w-full h-48 object-cover" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2 text-white">Desain Grafis</h3>
+          <p class="text-white/80 text-sm">A result of our design work from the Coreldraw application with Mrs. Hani.</p>
+          <a href="project_2.html" class="text-teal-400 hover:text-teal-300 mt-4 inline-block font-semibold">View Details →</a>
+        </div>
+      </div>
+      <div class="bg-black rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105 cursor-pointer border border-gray-700">
+        <img src="aseet/pexels-luis-gomes-166706-546819.jpg" alt="Project 3" class="w-full h-48 object-cover" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2 text-white">Pemogramman Web</h3>
+          <p class="text-white/80 text-sm">A result of our web assignment from the Visual Studio application with Mr. Sanjaya.</p>
+          <a href="project_3.html" class="text-teal-400 hover:text-teal-300 mt-4 inline-block font-semibold">View Details →</a>
+        </div>
+      </div>
+      <div class="bg-black rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105 cursor-pointer border border-gray-700">
+        <img src="aseet/pexels-hikaique-65437.jpg" alt="Project 4" class="w-full h-48 object-cover" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2 text-white">Text Procedure & Narative</h3>
+          <p class="text-white/80 text-sm">Narrative and Procedure videos of an English lesson with Mrs.Euis.</p>
+          <a href="project_4.html" class="text-teal-400 hover:text-teal-300 mt-4 inline-block font-semibold">View Details →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-black px-6 sm:px-12">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl font-bold text-white mb-6 border-b border-cyan-600 inline-block pb-2">Contact Us</h2>
+      <form class="space-y-6" action="send_message.php" method="POST" >
+        <div>
+          <label for="name" class="block mb-2 font-medium text-white">Name</label>
+          <input type="text" id="name" name="name" required
+            class="w-full rounded-md bg-black border border-gray-700 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-600"/>
+        </div>
+        <div>
+          <label for="email" class="block mb-2 font-medium text-white">Email</label>
+          <input type="email" id="email" name="email" required
+            class="w-full rounded-md bg-black border border-gray-700 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-600" />
+        </div>
+        <div>
+          <label for="message" class="block mb-2 font-medium text-white">Message</label>
+          <textarea id="message" name="message" rows="5" required
+            class="w-full rounded-md bg-black border border-gray-700 px-4 py-3 text-white resize-none focus:outline-none focus:ring-2 focus:ring-cyan-600"></textarea>
+        </div>
+        <button type="submit"
+          class="bg-cyan-600 hover:bg-cyan-700 active:bg-cyan-800 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300 ease-in-out">Send
+          Message</button>
+      </form>
+      <p id="form-msg" class="mt-4 text-teal-400 font-semibold hidden"></p>
+      <div class="mt-10">
+        <h3 class="text-lg font-semibold text-cyan-500">Connect with us</h3>
+        <div class="flex space-x-4 mt-2">
+          <a href="#" class="text-teal-400 hover:text-teal-300">
+            <i class="fab fa-github fa-2x"></i>
+          </a>
+          <a href="#" class="text-teal-400 hover:text-teal-300">
+            <i class="fab fa-linkedin fa-2x"></i>
+          </a>
+          <a href="#" class="text-teal-400 hover:text-teal-300">
+            <i class="fab fa-twitter fa-2x"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 bg-cyan-600 hover:bg-cyan-800 text-white p-3 rounded-3xl shadow-lg hidden transition-opacity duration-300">
+    ↑
+  </button>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-gray-500 text-sm border-t border-gray-700">
+    &copy; 2025 X RPL 2. All rights reserved.
+  </footer>
+
+  <script src="port.js"></script>
+</body>
+</html>
